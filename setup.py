@@ -15,6 +15,7 @@ setup(
     name='foliantcontrib.badges',
     description=SHORT_DESCRIPTION,
     long_description=LONG_DESCRIPTION,
+    long_description_content_type='text/markdown',
     version='1.0.0',
     author='Daniil Minukhin',
     author_email='ddddsa@gmail.com',
