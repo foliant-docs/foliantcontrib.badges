@@ -12,7 +12,7 @@ except FileNotFoundError:
 
 
 setup(
-    name='foliantcontrib.anchors',
+    name='foliantcontrib.badges',
     description=SHORT_DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     version='1.0.0',
