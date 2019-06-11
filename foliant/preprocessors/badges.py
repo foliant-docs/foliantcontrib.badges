@@ -29,7 +29,7 @@ def is_svg(url: str):
     return get_ext_from_url(url) == '.svg'
 
 
-def apply_vars(vars_: dict, value: text):
+def apply_vars(vars_: dict, value: str):
     """replace variables in value by their values from dict"""
     result = value
     for var, repl in vars_.items():
@@ -59,6 +59,7 @@ def add_params_to_url(url: str, params: dict):
 
 class Preprocessor(BasePreprocessorExt):
     defaults = {
+        'targets': [],
         'server': 'https://img.shields.io',
         'as_object': True,
         'add_link': True,
@@ -76,6 +77,11 @@ class Preprocessor(BasePreprocessorExt):
     @allow_fail()
     def process_badges(self, block) -> str:
         """Replace <badge> tags with an image or an svg-object tag"""
+        if self.options['targets'] and\
+                self.context['target'] not in self.options['targets']:
+            self.logger.debug(f'{self.context["target"]} not in targets, removing all badge tags')
+            return ''  # remove tags for other targets
+
         options = CombinedOptions({'main': self.options,
                                    'tag': self.get_options(block.group('options'))},
                                   convertors={'as_object': boolean_convertor,
@@ -99,12 +105,12 @@ class Preprocessor(BasePreprocessorExt):
             if badge_link:
                 link = add_params_to_url(link, {'link': badge_link})
 
-        if is_svg(link) and options['as_object']:
+        if self.context['target'] not in ('pdf', 'docx') and\
+                is_svg(link) and options['as_object']:
             return AS_OBJECT.format(link=link)
         else:
             return AS_IMG.format(link=link)
 
     def apply(self):
         self._process_tags_for_all_files(self.process_badges)
-
         self.logger.info('Preprocessor applied')

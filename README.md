@@ -41,6 +41,8 @@ preprocessors:
 `add_link`
 :    If `true` preprocessor tries to determine the link which should be added to badge (for example, link to jira issue page for jira issue badge). Only works with `as_object = true`. default: `true`
 
+> Please note that right now only links for **pypi** and **jira-issue** badges are being added automatically. Please contribute or contact author for adding other services.
+
 `vars`
 :    Dictionary with variables which will be replaced in badge urls. See **variables** section.
 
