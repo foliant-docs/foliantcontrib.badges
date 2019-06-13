@@ -37,9 +37,10 @@ def apply_vars(vars_: dict, value: str):
         result = p.sub(repl, result)
     return result
 
+
 def gen_link(badge_url):
     """Try to generate a link which should be added to the badge"""
-    patterns =  {
+    patterns = {
         r'\g<protocol>://\g<host>/browse/\g<issue>': (r'/jira/issue/(?P<protocol>.+?)/(?P<host>.+)/(?P<issue>.+)\.\w+',),
         r'https://pypi.org/project/\g<project>': (r'/pypi/\w+/(?P<project>.+)\.\w+',)
     }
@@ -49,6 +50,7 @@ def gen_link(badge_url):
             if res:
                 return re.sub(expr, repl, res.group(0))
 
+
 def add_params_to_url(url: str, params: dict):
     """add query params to url from params dict (with replace)"""
     url_parts = list(urlparse(url))
@@ -56,6 +58,7 @@ def add_params_to_url(url: str, params: dict):
     query.update(params)
     url_parts[4] = urlencode(query)
     return urlunparse(url_parts)
+
 
 class Preprocessor(BasePreprocessorExt):
     defaults = {
@@ -73,6 +76,16 @@ class Preprocessor(BasePreprocessorExt):
         self.logger = self.logger.getChild('badges')
 
         self.logger.debug(f'Preprocessor inited: {self.__dict__}')
+
+    def add_params(self, url: str, options: CombinedOptions):
+        """Add query params which alter the badge look to the badge link"""
+        BADGE_PARAMS = ['cacheSeconds', 'color', 'label', 'labelColor',
+                        'link', 'logo', 'logoColor', 'logoWidth', 'style']
+        to_add = {}
+        for param in BADGE_PARAMS:
+            if param in options:
+                to_add[param] = str(options[param])
+        return add_params_to_url(url, to_add)
 
     @allow_fail()
     def process_badges(self, block) -> str:
@@ -104,6 +117,8 @@ class Preprocessor(BasePreprocessorExt):
             badge_link = gen_link(link)
             if badge_link:
                 link = add_params_to_url(link, {'link': badge_link})
+
+        link = self.add_params(link, options)
 
         if self.context['target'] not in ('pdf', 'docx') and\
                 is_svg(link) and options['as_object']:

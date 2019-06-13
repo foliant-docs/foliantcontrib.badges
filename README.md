@@ -30,6 +30,9 @@ preprocessors:
         vars:
             jira_path: localhost:3000/jira
             package: foliant
+        # badge look parameters
+        style: flat-square
+        logo: jira
 ```
 
 `server`
@@ -46,12 +49,20 @@ preprocessors:
 `vars`
 :    Dictionary with variables which will be replaced in badge urls. See **variables** section.
 
+Also you may add parameters specified on the shields.io website which alter the badge view like: `label`, `logo`, `style` etc.
+
 # Usage
 
 Just add the `badge` tag and specify path to badge in the tag body:
 
 ```
 <badge>jira/issue/https/issues.apache.org/jira/kafka-2896.svg</badge>
+```
+
+All options from config may be overriden in tag parameters:
+
+```
+<badge style="social" as_object="false">jira/issue/https/issues.apache.org/jira/kafka-2896.svg</badge>
 ```
 
 ## Variables
