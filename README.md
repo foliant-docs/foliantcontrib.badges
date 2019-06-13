@@ -36,7 +36,7 @@ preprocessors:
 :    Shields server URL, which hosts badges. default: `https://img.shields.io`
 
 `as_object`
-:    If `true` — preprocessor inserts `svg` badges with HTML `<object>` tag, instead of Markdown image tag (`![]()`). This is required for links and hints to work. default: `true`
+:    If `true` — preprocessor inserts `svg` badges with HTML `<object>` tag, instead of Markdown image tag. This is required for links and hints to work. default: `true`
 
 `add_link`
 :    If `true` preprocessor tries to determine the link which should be added to badge (for example, link to jira issue page for jira issue badge). Only works with `as_object = true`. default: `true`
