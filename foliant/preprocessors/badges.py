@@ -5,12 +5,15 @@ Arbitrary anchors for Foliant.
 import os
 import re
 
-from urllib.parse import urlparse, urlencode, parse_qsl, urlunparse
+from urllib.parse import parse_qsl
+from urllib.parse import urlencode
+from urllib.parse import urlparse
+from urllib.parse import urlunparse
 
-from foliant.preprocessors.utils.combined_options import (CombinedOptions,
-                                                          boolean_convertor)
-from foliant.preprocessors.utils.preprocessor_ext import (BasePreprocessorExt,
-                                                          allow_fail)
+from foliant.contrib.combined_options import CombinedOptions
+from foliant.contrib.combined_options import boolean_convertor
+from foliant.preprocessors.utils.preprocessor_ext import BasePreprocessorExt
+from foliant.preprocessors.utils.preprocessor_ext import allow_fail
 
 OptionValue = int or float or bool or str
 

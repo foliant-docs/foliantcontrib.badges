@@ -1,4 +1,4 @@
-![](https://img.shields.io/pypi/v/foliantcontrib.badges.svg)
+[![](https://img.shields.io/pypi/v/foliantcontrib.badges.svg)](https://pypi.org/project/foliantcontrib.badges/) [![](https://img.shields.io/github/v/tag/foliant-docs/foliantcontrib.badges.svg?label=GitHub)](https://github.com/foliant-docs/foliantcontrib.badges)
 
 # Badges
 
