@@ -1,3 +1,7 @@
+# 1.0.3
+
+- New utils module
+
 # 1.0.2
 
 - support params which alter badge look to be supplied in tag params
