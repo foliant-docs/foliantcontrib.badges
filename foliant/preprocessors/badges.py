@@ -93,10 +93,10 @@ class Preprocessor(BasePreprocessorExt):
     @allow_fail()
     def process_badges(self, block) -> str:
         """Replace <badge> tags with an image or an svg-object tag"""
-        if self.options['targets'] and\
-                self.context['target'] not in self.options['targets']:
-            self.logger.debug(f'{self.context["target"]} not in targets, removing all badge tags')
-            return ''  # remove tags for other targets
+        # if self.options['targets'] and\
+        #         self.context['target'] not in self.options['targets']:
+        #     self.logger.debug(f'{self.context["target"]} not in targets, removing all badge tags')
+        #     return ''  # remove tags for other targets
 
         options = CombinedOptions({'main': self.options,
                                    'tag': self.get_options(block.group('options'))},
