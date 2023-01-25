@@ -1,4 +1,4 @@
-# 1.0.3
+# 1.0.4
 
 - feat: add support for different jira issue badges
 
