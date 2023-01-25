@@ -1,3 +1,7 @@
+# 1.0.3
+
+- feat: add support for different jira issue badges
+
 # 1.0.2
 
 - support params which alter badge look to be supplied in tag params

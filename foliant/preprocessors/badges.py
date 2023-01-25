@@ -44,7 +44,7 @@ def apply_vars(vars_: dict, value: str):
 def gen_link(badge_url):
     """Try to generate a link which should be added to the badge"""
     patterns = {
-        r'\g<protocol>://\g<host>/browse/\g<issue>': (r'/jira/issue/(?P<protocol>.+?)/(?P<host>.+)/(?P<issue>.+)\.\w+',),
+        r'\g<protocol>://\g<host>/browse/\g<issue>': (r'/jira/issue(.*?)/(?P<protocol>.+?)/(?P<host>.+)/(?P<issue>.+)\.\w+',),
         r'https://pypi.org/project/\g<project>': (r'/pypi/\w+/(?P<project>.+)\.\w+',)
     }
     for repl, exprs in patterns.items():
